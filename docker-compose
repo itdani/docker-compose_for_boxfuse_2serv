@@ -1,0 +1,20 @@
+version: '3'
+services:
+  dev:
+    build: ./boxfuse
+    container_name: serv1
+    volumes:
+      - war_volume:/usr/local/tomcat/webapps/
+    restart: always
+  app:
+    image: tomcat:8-alpine
+    container_name: serv2
+    ports:
+      - 8080:8080
+    volumes:
+      - war_volume:/usr/local/tomcat/webapps/
+    restart: always
+    links:
+      - dev
+volumes:
+  war_volume:
