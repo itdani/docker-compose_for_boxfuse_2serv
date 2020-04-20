@@ -14,7 +14,7 @@ services:
     volumes:
       - war_volume:/usr/local/tomcat/webapps/
     restart: always
-    links:
+    depends_on:
       - dev
 volumes:
   war_volume:
